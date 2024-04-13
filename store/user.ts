@@ -1,5 +1,4 @@
 import type { UserState } from '@/types/user'
-import auth from '@/services/auth'
 
 type LoginPayload = {
   username: string
@@ -10,8 +9,13 @@ export const useUserStore = defineStore({
   id: 'user-store',
   state: (): UserState => {
     return {
-      userInfo: {},
-      menuList: {},
+      userInfo: {
+        avatar: 'avatar',
+        name: '',
+        email: null,
+        phone: '',
+        token: '',
+      },
     }
   },
   getters: {
@@ -35,5 +39,8 @@ export const useUserStore = defineStore({
 
       this.userInfo = data.value
     },
+  },
+  persist: {
+    storage: persistedState.localStorage,
   },
 })

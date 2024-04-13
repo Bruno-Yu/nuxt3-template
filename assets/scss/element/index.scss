@@ -1,6 +1,6 @@
 $-colors: (
   'primary': (
-    'base': rgba(107,33,168, 1),
+    'base': rgb(12, 130, 254),
   ),
   'success': (
     'base': #67c23a,
@@ -19,6 +19,32 @@ $-colors: (
   ),
 );
 
+
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: $-colors
+  $colors: $-colors,
 );
+
+
+
+.global-toast {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%);
+  background-color: #0e6e56db;
+
+  &,
+  .el-message__content {
+    color: white;
+  }
+
+  .el-message__content {
+    color: white;
+    overflow: hidden;
+    line-height: 1.5;
+    text-wrap: nowrap;
+    // text-overflow: ellipsis;
+    display: -webkit-box;
+    // -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}

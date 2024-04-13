@@ -1,22 +1,21 @@
 # Nuxt3 + TypeScript + Tailwind + Jest + Pinia + element-plus starter
 
-> Nuxt3 開發模板 ( Nuxt3 + TypeScript + Tailwind + Jest + Pinia + element-plus ) Node18
-注意事項: 由於同時有 Tailwindcss 以及 element-plus 這兩個 css 框架，為避免樣式衝突，請將此二者樣式分開使用 & 管理
+> Nuxt3 開發模板 ( Nuxt3 + TypeScript + Tailwind + Pinia + i8n + element-plus + dayjs ) Node18
 
 ## 使用技術
 
-1. Nuxt3
+1. Nuxt3 (v3.11.2)
 2. Node18
 3. Typescript
-4. Jest
-5. Pinia
-6. Tailwind
-7. element-plus
+4. Pinia / pinia-plugin-persistedstate
+5. Tailwind
+6. element-plus
+7. i18n
+8. dayjs
 
 ## 使用 lint 風格
 1. Prettier
-2. Anthony Fu 大佬的 Eslint 風格
-3. commitlint 設置 (husky 套件所提供)
+
 
 ## 安裝指令
 
@@ -34,16 +33,4 @@ yarn dev
 
 ```bash
 yarn build
-```
-
-## 文件總覽
-
-```bash
-yarn preview
-```
-
-## test 執行測試
-
-```bash
-yarn test
 ```

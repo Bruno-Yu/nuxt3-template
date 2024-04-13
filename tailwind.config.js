@@ -11,8 +11,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#5c6ac4', // 自訂主題色
-      }
+        primary: 'rgb(12, 130, 254)', // 自訂主題色
+        lightPrimary:  'rgb(246, 250, 253)', // login input 背景色
+        secondary: 'rgb(241, 241, 245)',
+      },
     },
   },
   plugins: [],

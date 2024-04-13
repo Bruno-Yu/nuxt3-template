@@ -1,0 +1,8 @@
+{
+  "hello": "Hello install successfully!",
+  "language": "Language",
+  "about": {
+    "title": "English",
+    "description": "this is page in english"
+  }
+}
