@@ -4,13 +4,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [{ href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined', rel: 'stylesheet' }],
-      htmlAttrs: {
-        lang: 'en',
-        translate: 'no',
-      },
     }
   },
-
+  runtimeConfig: {
+    public: {
+      NUXT_API_BASE: process.env.NUXT_API_BASE,
+    },
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@element-plus/nuxt',
@@ -36,17 +36,21 @@ export default defineNuxtConfig({
       },
       {
         code: 'zh',
-        iso: 'zh-TW',
+        iso: 'zh-TW', 
         file: 'zh.json'
       }
     ],
     defaultLocale: 'en', //預設語系
+    detectBrowserLanguage: { // 值為 boolean 或是物件，啟用偵測使用者瀏覽器目前語系
+      useCookie: true, // true 代表會將使用者目前語系以 cookie 形式存在瀏覽器中
+      cookieKey: 'i18n_redirected', // 存瀏覽器的 cookies key 名稱設定，預設是 'i18n_redirected'
+      redirectOn: 'root' // 基於哪種路由路徑進行 i18n 轉址，若為了 seo 建議放 root 代表只在根目錄位址做判斷
+    }
   },
   css: ['~/assets/scss/index.scss'],
   tailwindcss: { // 自訂的 tailwindcss 設定設置位置
     cssPath: '~/assets/scss/tailwind.scss', // 這是自訂的 tailwind 引入路徑
   },
-  ssr: false,
   vite: {
     css: {
       preprocessorOptions: {

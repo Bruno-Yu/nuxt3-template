@@ -19,18 +19,89 @@ $-colors: (
   ),
 );
 
+$button-padding-vertical:  (
+    'large': 16px,
+    'default': 9px,
+    'small': 6px,
+);
+
+$button-font-size: (
+  'large': 24px,
+  'default': 16px,
+  'small': 12px,
+);
+
+$button-border-radius: (
+  'large': 32px,
+  'default': 9px,
+  'small': 6px,
+);
 
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: $-colors,
+  $button-padding-vertical: $button-padding-vertical,
+  $button-font-size: $button-font-size,
+  $button-border-radius: $button-border-radius
 );
 
 
+.el-button--large  {
+  height: 60px !important;
+}
 
-.global-toast {
+.el-dialog {
+  --el-dialog-border-radius: 10px !important;
+  --el-dialog-padding-primary: 0 !important;
+}
+.el-dialog__header{
+  padding: 2rem 0;
+}
+.el-dialog__body{
+  padding: 0;
+  padding-top: 0;
+}
+
+.el-dialog__footer{
+  border-top: 0.5px solid rgb(231, 225, 225);
+  padding: 0;
+}
+
+// el-tabs
+
+.el-tabs__header {
+  background: rgb(246, 250, 253);
+  padding: 0 16px;
+}
+.el-tabs__nav {
+  width: 100%;
+  background: rgb(246, 250, 253);
+}
+.el-tabs__item{
+  width: 100%;
+}
+
+// el-drawer
+.el-drawer {
+  border-radius: 20px 20px 0 0;
+  --el-drawer-padding-primary: 0 !important;
+}
+
+.el-drawer__header {
+  margin-bottom: 0 !important;
+}
+
+// select 
+.el-select-dropdown__wrap {
+  max-height: 100vh !important;
+}
+
+.toast {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%);
-  background-color: #0e6e56db;
+  width: max-content;
+  border: none;
+  background-color: #000000db;
 
   &,
   .el-message__content {
@@ -39,12 +110,20 @@ $-colors: (
 
   .el-message__content {
     color: white;
-    overflow: hidden;
-    line-height: 1.5;
-    text-wrap: nowrap;
-    // text-overflow: ellipsis;
+    line-height: 1.2;
+    word-wrap: break-word;
     display: -webkit-box;
-    // -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
 }
+
+.global-toast {
+  @extend .toast;
+  z-index: 3500 !important;
+}
+
+.global-loading {
+  @extend .toast;
+  z-index: 3000 !important;
+}
+

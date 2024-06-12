@@ -15,6 +15,12 @@ module.exports = {
         lightPrimary:  'rgb(246, 250, 253)', // login input 背景色
         secondary: 'rgb(241, 241, 245)',
       },
+      screens: {
+        'xs': '375px'
+      },
+      animation: {
+        'spin-slow': 'spin 1.5s linear infinite',
+      }
     },
   },
   plugins: [],

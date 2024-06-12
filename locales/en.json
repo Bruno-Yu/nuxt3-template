@@ -1,8 +1,6 @@
-{
-  "hello": "Hello install successfully!",
-  "language": "Language",
-  "about": {
-    "title": "English",
-    "description": "this is page in english"
+{  
+  "validate": {
+    "error": "var_1's format is invalid",
+    "required": "var_1 is required"
   }
 }

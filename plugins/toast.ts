@@ -1,5 +1,19 @@
+/**
+ * 全域 toast
+ * 使用方式 index.vue
+ *
+ * const { $toast, $toastCloseAll } = useNuxtApp()
+ * import { Search } from '@element-plus/icons-vue' // 需引用element-plus的icon
+ *
+ * $toast({message: '搜尋中', duration: 2000, icon: Search}) // 有放大鏡icon的toast，顯示2秒後會自動關閉
+ *
+ * setTimeout(() => { // 3秒後關閉所有toast
+ *  $toastCloseAll()
+ * }, 3000);
+ *
+ */
+
 import { ElMessage } from 'element-plus'
-import { Loading } from '@element-plus/icons-vue'
 import { h } from 'vue'
 
 interface MessageInterFace {
@@ -26,39 +40,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           duration: messageParams.duration,
         })
       },
-
-      // loading toast
-      loadingToast: (messageParams: MessageInterFace) => {
-        ElMessage({
-          icon: () => {
-            return h(
-              'div',
-              { class: 'el-icon is-loading' },
-              [h(Loading)]
-            )
-          },
-          customClass: 'global-toast',
-          message: 'loading',
-          duration: messageParams?.duration,
-        })
-      },
-
-      // checking toast
-      checkingToast: (messageParams: MessageInterFace) => {
-        ElMessage({
-          icon: () => {
-            return h(
-              'div',
-              { class: 'el-icon is-loading' },
-              [h(Loading)]
-            )
-          },
-          customClass: 'global-toast',
-          message: 'checking...',
-          duration: messageParams?.duration,
-        })
-      },
-
       // 關閉所有toast
       toastCloseAll: () => {
         ElMessage.closeAll()

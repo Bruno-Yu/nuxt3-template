@@ -1,8 +1,6 @@
-{
-  "hello": "你好!",
-  "language": "語言",
-  "about": {
-    "title": "繁體中文",
-    "description": "這是繁體中文的頁面"
+{  
+  "validate": {
+    "error": "var_1's format is invalid",
+    "required": "var_1 is required"
   }
 }

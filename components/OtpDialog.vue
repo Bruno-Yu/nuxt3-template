@@ -50,12 +50,19 @@ watch(
     immediate: true
   })
 
-watchEffect(() => {
-  if (condition.value) {
+watch(condition,(newValue, oldValue) => {
+  if (newValue) {
     const otp = otpForm.join('')
     $emits('otpConfirm', `${otp}`)
   }
 })
+
+// watchEffect(() => {
+//   if (condition.value) {
+//     const otp = otpForm.join('')
+//     $emits('otpConfirm', `${otp}`)
+//   }
+// })
 
 const handleInputKeyup = (event, index) => {
   event.preventDefault() // 阻止預設的輸入行為
@@ -103,7 +110,15 @@ const errorMessage = ref('')
 
 // 重送 otp
 const resendOtp = async () => {
-  
+  const result = await useVerifyOpt({ phone: props.phone, isSignup: props.isSignup })
+  if (result.data.value) { // 若 api 回傳為 error result.data.value 為 null
+    errorMessage.value = ''
+    $toast({ message: $t('optDialog.message.successfullyResent'), duration: 2000, icon: SuccessFilled })
+  }
+  if (result.error.value) { // 若 api 回傳有出錯 error
+    const { data } = result.error.value
+    errorMessage.value = data.message
+  }
 }
 </script>
 
@@ -114,8 +129,8 @@ const resendOtp = async () => {
     :width="dialogWidth"
     modal-class="otp-dialog"
   >
-    <p class="text-center font-bold text-2xl pt-5">Please enter OTP</p>
-    <p v-if="props.showResend" class="text-center text-sm mt-2">OTP sent to {{ props.phone }}</p>
+    <p class="text-center font-bold text-2xl pt-5">{{ $t('optDialog.pleaseEnterOTP') }}</p>
+    <p v-if="props.showResend" class="text-center text-sm mt-2">{{ $t('optDialog.OTPSentTo') }} {{ props.phone }}</p>
     <el-form class="otp-form mt-5 px-5">
       <el-form-item>
         <div class="otp-form__container flex gap-2">
@@ -128,7 +143,7 @@ const resendOtp = async () => {
         <div v-if="props.showResend" class="flex justify-between">
           <p class="text-red-600">{{ errorMessage }}</p>
           <el-button size="small" type="primary" link @click="resendOtp">
-            Resend OTP
+            {{ $t('optDialog.resendOTP') }}
           </el-button>
         </div>
       </div>
@@ -139,13 +154,13 @@ const resendOtp = async () => {
 <style lang="scss" scoped>
 .otp-form {
   &__container {
-    ::v-deep .el-input__wrapper {
+    :deep(.el-input__wrapper) {
       box-shadow: none;
       border-bottom: 1px solid var(--el-input-border-color);
       border-radius: 0;
       padding: 0; // 文字置中所以不需要padding，避免螢幕寬度太小的情況下文字被padding擠到隱藏
     }
-    ::v-deep .el-input__inner {
+    :deep(.el-input__inner) {
       text-align: center;
     }
   }

@@ -3,12 +3,10 @@ export type UserState = {
 }
 
 export type UserInfo = {
-  avatar: string
-  name: string 
+  name: string // collection worker 的 name = phone
   email: null
-  phone: string
-  token: string
   [prop: string]: any // 無用欄位
 } | null
+
 
 
